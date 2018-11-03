@@ -25,7 +25,10 @@ SECRET_KEY = 'ml=)_f=*a*670hmo&1hd#6)u)9m5t$%@q^ln6(wg5#f2ne_5p!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'scribbli-199905.appspot.com',
+    'localhost',
+]
 
 
 # Application definition
@@ -36,7 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
+
+    # django-allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +71,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # `django-allauth` needs this from django
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -100,6 +112,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Supported authenticators
+# https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-AUTHENTICATION_BACKENDS
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -118,3 +142,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Define the default site id for `django.contrib.sites`
+SITE_ID = 1
