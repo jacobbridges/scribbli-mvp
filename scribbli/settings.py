@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    # subapps
+    'scribbli.profiles',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +148,6 @@ STATIC_URL = '/static/'
 
 # Define the default site id for `django.contrib.sites`
 SITE_ID = 1
+
+# Define the url to redirect to once logged in
+LOGIN_REDIRECT_URL = 'profile-detail--mine'
