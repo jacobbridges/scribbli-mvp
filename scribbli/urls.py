@@ -22,5 +22,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 
     path('profiles/', include('scribbli.profiles.urls')),
+    path('characters/', include('scribbli.characters.urls')),
     path('', include('scribbli.universe.urls')),
 ]

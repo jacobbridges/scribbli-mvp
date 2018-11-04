@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # subapps
     'scribbli.profiles',
     'scribbli.universe',
+    'scribbli.characters',
 ]
 
 MIDDLEWARE = [
