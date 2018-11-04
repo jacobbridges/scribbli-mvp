@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>World List | Scribbli</title>
+</head>
+<body>
+
+    <h1>World List</h1>
+
+    <ul>
+        {% for location in locations %}
+            <li><a href="{{ location.get_absolute_url }}">{{ location.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

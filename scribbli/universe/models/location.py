@@ -28,7 +28,7 @@ class Location(MPTTModel, DateCreatedMixin, DateModifiedMixin, Serializable):
         return data
 
     def get_absolute_url(self):
-        return ''
+        return reverse('location-detail', kwargs=dict(slug=self.slug))
 
     def __repr__(self): return self.unique_name
 
