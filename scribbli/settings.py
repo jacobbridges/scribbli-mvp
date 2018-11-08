@@ -26,8 +26,7 @@ SECRET_KEY = 'ml=)_f=*a*670hmo&1hd#6)u)9m5t$%@q^ln6(wg5#f2ne_5p!'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'scribbli-199905.appspot.com',
-    'localhost',
+    '*'
 ]
 
 
@@ -43,12 +42,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # ---- Django addons ----
+
     # django-allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
     # django-mptt
     'mptt',
+
+    # django toolbar
+    'debug_toolbar',
 
     # subapps
     'scribbli.profiles',
@@ -64,6 +68,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # django toolbar
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'scribbli.urls'
@@ -156,3 +163,6 @@ SITE_ID = 1
 
 # Define the url to redirect to once logged in
 LOGIN_REDIRECT_URL = 'profile-detail--mine'
+
+# Django-toolbar needs to know which IPs to run on
+INTERNAL_IPS = ['localhost', '127.0.0.1']
