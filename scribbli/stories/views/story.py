@@ -1,4 +1,5 @@
-from django.views.generic import DetailView, ListView
+from django.utils.text import slugify
+from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
 from ..models import Story
 
@@ -14,3 +15,28 @@ class StoryListView(ListView):
     model = Story
     template_name = 'scribbli/stories/story/list.html'
     paginate_by = 10
+
+
+class StoryCreateView(CreateView):
+    template_name = 'scribbli/stories/story/create.html'
+    model = Story
+    fields = ['name', 'description', 'locations']
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.instance.user = self.request.user
+        return form
+
+    def form_valid(self, form):
+        form.instance.slug = slugify(form.instance.name)
+        return super().form_valid(form)
+
+
+class StoryUpdateView(UpdateView):
+    template_name = 'scribbli/stories/story/update.html'
+    model = Story
+    fields = ['name', 'description', 'locations']
+
+    def form_valid(self, form):
+        form.instance.slug = slugify(form.instance.name)
+        return super().form_valid(form)

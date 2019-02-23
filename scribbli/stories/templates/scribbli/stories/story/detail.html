@@ -4,6 +4,6 @@
 
 {% block main %}
     {{ block.super }}
-    <h1>{{ story.name }} <small> - {{ story.author.username|default:'Anonymous' }}</small></h1>
+    <h1>{{ story.name }} <small> - {{ story.user.username|default:'Anonymous' }}</small></h1>
     <p>{{ story.description }}</p>
 {% endblock %}

@@ -13,7 +13,7 @@ class Story(DateCreatedMixin, DateModifiedMixin, models.Model):
     name = models.CharField(max_length=80)
     slug = models.CharField(max_length=80)
     description = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='stories', null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='stories', null=True)
     locations = models.ManyToManyField(Location, related_name='stories')
 
     def get_absolute_url(self):

@@ -1,0 +1,33 @@
+{% extends 'scribbli/extendables/base.html' %}
+
+{% block title %}Create a Story{% endblock %}
+
+{% block main %}
+    {{ block.super }}
+    <h1>Create a Story</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            {{ form.name.errors }}
+            {{ form.name.label }}
+            <div>
+                {{ form.name }}
+            </div>
+        </div>
+        <div>
+            {{ form.description.errors }}
+            {{ form.description.label }}
+            <div>
+                {{ form.description }}
+            </div>
+        </div>
+        <div>
+            {{ form.locations.errors }}
+            {{ form.locations.label }}
+            <div>
+                {{ form.locations }}
+            </div>
+        </div>
+        <input type="submit" value="Create">
+    </form>
+{% endblock %}
