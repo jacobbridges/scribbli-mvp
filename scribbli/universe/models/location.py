@@ -18,6 +18,6 @@ class Location(MPTTModel, DateCreatedMixin, DateModifiedMixin):
         return f'{self.name}#{self.id:04}'
 
     def get_absolute_url(self):
-        return reverse('location-detail', kwargs=dict(slug=self.slug))
+        return reverse('location-detail', kwargs=dict(pk=self.pk, slug=self.slug))
 
     def __str__(self): return self.unique_name

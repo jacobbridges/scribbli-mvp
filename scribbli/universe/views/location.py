@@ -1,4 +1,8 @@
-from django.views.generic import ListView, DetailView
+from django.core.exceptions import ValidationError
+from django.forms import ModelForm
+from django.utils.text import slugify
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from mptt.exceptions import InvalidMove
 
 from ..models import Location
 
@@ -14,3 +18,30 @@ class LocationDetailView(DetailView):
     template_name = 'scribbli/universe/location/detail.html'
     context_object_name = 'location'
     model = Location
+
+
+class LocationCreateView(CreateView):
+    template_name = 'scribbli/universe/location/create.html'
+    model = Location
+    fields = ['name', 'parent']
+
+    def form_valid(self, form):
+        form.instance.slug = slugify(form.instance.name)
+        return super().form_valid(form)
+
+
+class LocationUpdateView(UpdateView):
+    template_name = 'scribbli/universe/location/update.html'
+    model = Location
+    fields = ['name', 'parent']
+
+    def form_valid(self, form: ModelForm):
+        form.instance.slug = slugify(form.instance.name)
+        try:
+            return super(LocationUpdateView, self).form_valid(form)
+        except InvalidMove:
+            form.add_error(
+                'parent',
+                ValidationError('World cannot be its own parent!', code='invalid')
+            )
+            return self.form_invalid(form)

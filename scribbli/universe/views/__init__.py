@@ -1,1 +1,6 @@
-from .location import LocationListView, LocationDetailView
+from .location import (
+    LocationListView,
+    LocationDetailView,
+    LocationCreateView,
+    LocationUpdateView,
+)

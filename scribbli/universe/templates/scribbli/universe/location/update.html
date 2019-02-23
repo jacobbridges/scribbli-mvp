@@ -1,0 +1,26 @@
+{% extends 'scribbli/extendables/base.html' %}
+
+{% block title %}Update {{ form.instance.name }}{% endblock %}
+
+{% block main %}
+    {{ block.super }}
+    <h1>Update {{ form.instance.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            {{ form.name.errors }}
+            {{ form.name.label }}
+            <div>
+                {{ form.name }}
+            </div>
+        </div>
+        <div>
+            {{ form.parent.errors }}
+            {{ form.parent.label }}
+            <div>
+                {{ form.parent }}
+            </div>
+        </div>
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}
