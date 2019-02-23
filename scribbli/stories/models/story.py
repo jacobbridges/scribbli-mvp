@@ -2,10 +2,9 @@ from django.db import models
 from django.urls.base import reverse
 
 from scribbli.models.mixins import DateCreatedMixin, DateModifiedMixin
-from dsms import Serializable
 
 
-class Story(DateCreatedMixin, DateModifiedMixin, models.Model, Serializable):
+class Story(DateCreatedMixin, DateModifiedMixin, models.Model):
     """
     Stories are groups of posts.
     """
@@ -14,11 +13,3 @@ class Story(DateCreatedMixin, DateModifiedMixin, models.Model, Serializable):
 
     def get_absolute_url(self):
         return ''
-
-    def serialize(self):
-        data = super().serialize()
-        data.update(dict(
-            name=self.name,
-            slug=self.slug,
-            url=self.get_absolute_url(),
-        ))

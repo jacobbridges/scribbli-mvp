@@ -3,10 +3,9 @@ from django.urls.base import reverse
 
 from .story import Story
 from scribbli.models.mixins import DateCreatedMixin, DateModifiedMixin
-from dsms import Serializable
 
 
-class Post(DateCreatedMixin, DateModifiedMixin, models.Model, Serializable):
+class Post(DateCreatedMixin, DateModifiedMixin, models.Model):
     """
     Posts are pieces of a story.
     """
