@@ -1,1 +1,6 @@
-from .character import CharacterListView, CharacterDetailView
+from .character import (
+    CharacterListView,
+    CharacterDetailView,
+    CharacterCreateView,
+    CharacterUpdateView,
+)

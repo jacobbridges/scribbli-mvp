@@ -16,8 +16,4 @@ class Character(DateCreatedMixin, DateModifiedMixin, models.Model):
     def get_absolute_url(self):
         return reverse('character-detail', kwargs=dict(slug=self.slug, pk=self.pk))
 
-    def __repr__(self): return self.name
-
     def __str__(self): return self.name
-
-    def __unicode__(self): return self.name
