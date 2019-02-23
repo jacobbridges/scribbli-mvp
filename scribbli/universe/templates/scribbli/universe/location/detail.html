@@ -4,6 +4,17 @@
 
 {% block main %}
     {{ block.super }}
-    <h1>{{ location.name }}</h1>
+    <h1>{{ location }}</h1>
     <a href="{{ location.get_absolute_url }}stories/">Stories in this World</a>
+
+    {% with children=location.get_children %}
+    {% if location.get_children %}
+        <h2>Worlds within {{ location }}</h2>
+        <ul>
+            {% for child in children %}
+                <li><a href="{{ child.get_absolute_url }}">{{ child }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
 {% endblock %}
