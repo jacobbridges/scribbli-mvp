@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stories</title>
+</head>
+<body>
+    <h1>Stories</h1>
+
+    <ul>
+        {% for story in stories %}
+            <li><a href="{{ story.get_absolute_url }}">{{ story }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

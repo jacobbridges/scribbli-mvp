@@ -23,5 +23,6 @@ urlpatterns = [
 
     path('profiles/', include('scribbli.profiles.urls')),
     path('characters/', include('scribbli.characters.urls')),
+    path('stories/', include('scribbli.stories.urls')),
     path('', include('scribbli.universe.urls')),
 ]

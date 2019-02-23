@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ story.name }}</title>
+</head>
+<body>
+    <h1>{{ story.name }} <small> - {{ story.author.username|default:'Anonymous' }}</small></h1>
+    <p>{{ story.description }}</p>
+</body>
+</html>
