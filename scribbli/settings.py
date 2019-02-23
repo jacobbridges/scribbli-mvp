@@ -43,17 +43,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # ---- Django addons ----
-    # django-allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # django-mptt
+
     'mptt',
 
     # subapps
     'scribbli.profiles',
     'scribbli.universe',
     'scribbli.characters',
+    'scribbli.stories',
 ]
 
 MIDDLEWARE = [

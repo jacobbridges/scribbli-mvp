@@ -1,9 +1,7 @@
 from django.db import models
 
-from dsms import Serializable
 
-
-class DateCreatedMixin(models.Model, Serializable):
+class DateCreatedMixin(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -17,7 +15,7 @@ class DateCreatedMixin(models.Model, Serializable):
             return None
 
 
-class DateModifiedMixin(models.Model, Serializable):
+class DateModifiedMixin(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
