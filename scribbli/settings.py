@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'mptt',
 
     # subapps
+    'scribbli',
     'scribbli.profiles',
     'scribbli.universe',
     'scribbli.characters',

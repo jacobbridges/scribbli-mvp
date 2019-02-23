@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ profile.user.username }} Profile | Scribbli</title>
-</head>
-<body>
+{% extends 'scribbli/extendables/base.html' %}
 
+{% block title %}{{ profile.user.username }} Profile{% endblock %}
+
+{% block main %}
+    {{ block.super }}
     <h1>{{ profile.user.username }}</h1>
 
     <p>{{ profile.about }}</p>
-
-</body>
-</html>
+{% endblock %}

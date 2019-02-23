@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ character.name }} | Character | Scribbli</title>
-</head>
-<body>
+{% extends 'scribbli/extendables/base.html' %}
 
-    <h1>{{ character.name }}</h1>
-    <small>created by {{ character.user.username }}</small>
+{% block title %}{{ character.name }} | Character{% endblock %}
 
-
-</body>
-</html>
+{% block main %}
+    {{ block.super }}
+    <h1>
+        {{ character.name }}
+        <small>created by {{ character.user.username }}</small>
+    </h1>
+{% endblock %}

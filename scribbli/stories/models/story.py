@@ -17,6 +17,6 @@ class Story(DateCreatedMixin, DateModifiedMixin, models.Model):
     locations = models.ManyToManyField(Location, related_name='stories')
 
     def get_absolute_url(self):
-        return ''
+        return reverse('story-detail', kwargs=dict(slug=self.slug, pk=self.pk))
 
     def __str__(self): return self.name

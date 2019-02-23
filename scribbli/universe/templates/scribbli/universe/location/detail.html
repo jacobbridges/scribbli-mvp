@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ location.name }} | Scribbli</title>
-</head>
-<body>
+{% extends 'scribbli/extendables/base.html' %}
 
+{% block title %}{{ location.name }} | World{% endblock %}
+
+{% block main %}
+    {{ block.super }}
     <h1>{{ location.name }}</h1>
-
-</body>
-</html>
+{% endblock %}
