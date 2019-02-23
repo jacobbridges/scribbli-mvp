@@ -4,3 +4,4 @@ from .location import (
     LocationCreateView,
     LocationUpdateView,
 )
+from .story_list import LocationStoryListView

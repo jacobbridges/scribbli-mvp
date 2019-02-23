@@ -5,6 +5,7 @@ from .views import (
     LocationDetailView,
     LocationCreateView,
     LocationUpdateView,
+    LocationStoryListView,
 )
 
 urlpatterns = [
@@ -12,4 +13,5 @@ urlpatterns = [
     path('worlds/new/', LocationCreateView.as_view(), name='location-create'),
     path('worlds/<int:pk>/<slug:slug>/', LocationDetailView.as_view(), name='location-detail'),
     path('worlds/<int:pk>/<slug:slug>/edit/', LocationUpdateView.as_view(), name='location-update'),
+    path('worlds/<int:pk>/<slug:slug>/stories/', LocationStoryListView.as_view(), name='location-story-list'),
 ]

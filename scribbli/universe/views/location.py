@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
+from django.core.paginator import Paginator
 from django.forms import ModelForm
 from django.utils.text import slugify
 from django.views.generic import ListView, DetailView, CreateView, UpdateView

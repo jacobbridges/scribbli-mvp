@@ -5,4 +5,5 @@
 {% block main %}
     {{ block.super }}
     <h1>{{ location.name }}</h1>
+    <a href="{{ location.get_absolute_url }}stories/">Stories in this World</a>
 {% endblock %}
