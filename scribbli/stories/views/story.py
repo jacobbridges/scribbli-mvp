@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.text import slugify
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
@@ -17,7 +18,7 @@ class StoryListView(ListView):
     paginate_by = 10
 
 
-class StoryCreateView(CreateView):
+class StoryCreateView(LoginRequiredMixin, CreateView):
     template_name = 'scribbli/stories/story/create.html'
     model = Story
     fields = ['name', 'description', 'locations']
@@ -32,7 +33,7 @@ class StoryCreateView(CreateView):
         return super().form_valid(form)
 
 
-class StoryUpdateView(UpdateView):
+class StoryUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'scribbli/stories/story/update.html'
     model = Story
     fields = ['name', 'description', 'locations']

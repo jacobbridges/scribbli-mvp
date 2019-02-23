@@ -1,10 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.text import slugify
 from django.views.generic import UpdateView
 
 from scribbli.characters.models import Character
 
 
-class CharacterUpdateView(UpdateView):
+class CharacterUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'scribbli/characters/character/update.html'
     model = Character
     fields = ['name']

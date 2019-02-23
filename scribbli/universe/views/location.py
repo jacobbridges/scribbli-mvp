@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from django.utils.text import slugify
@@ -20,7 +21,7 @@ class LocationDetailView(DetailView):
     model = Location
 
 
-class LocationCreateView(CreateView):
+class LocationCreateView(LoginRequiredMixin, CreateView):
     template_name = 'scribbli/universe/location/create.html'
     model = Location
     fields = ['name', 'parent']
@@ -30,7 +31,7 @@ class LocationCreateView(CreateView):
         return super().form_valid(form)
 
 
-class LocationUpdateView(UpdateView):
+class LocationUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'scribbli/universe/location/update.html'
     model = Location
     fields = ['name', 'parent']

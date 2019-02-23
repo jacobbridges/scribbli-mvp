@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 from django.utils.text import slugify
 from django.views.generic import CreateView
@@ -5,7 +6,7 @@ from django.views.generic import CreateView
 from scribbli.characters.models import Character
 
 
-class CharacterCreateView(CreateView):
+class CharacterCreateView(LoginRequiredMixin, CreateView):
     template_name = 'scribbli/characters/character/create.html'
     model = Character
     fields = ['name']
