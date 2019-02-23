@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.utils.text import slugify
 from django.views.generic import CreateView
 
@@ -11,7 +12,10 @@ class CharacterCreateView(CreateView):
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        form.instance.user = self.request.user
+        try:
+            form.instance.user = self.request.user
+        except ValueError:
+            raise Http404
         return form
 
     def form_valid(self, form):
