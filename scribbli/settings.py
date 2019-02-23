@@ -46,8 +46,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-
     'mptt',
+    'debug_toolbar',
 
     # subapps
     'scribbli',
@@ -65,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'scribbli.urls'
@@ -157,3 +158,6 @@ SITE_ID = 1
 
 # Define the url to redirect to once logged in
 LOGIN_REDIRECT_URL = 'profile-detail--mine'
+
+# Define urls where the django debug toolbar should render
+INTERNAL_IPS = ('localhost', '127.0.0.1')

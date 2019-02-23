@@ -11,4 +11,6 @@
             <li><a href="{{ character.get_absolute_url }}">{{ character.name }}</a></li>
         {% endfor %}
     </ul>
+
+    {% include 'scribbli/partials/__pagination-simple.html' with objects=page_obj %}
 {% endblock %}

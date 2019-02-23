@@ -13,3 +13,4 @@ class StoryListView(ListView):
     context_object_name = 'stories'
     model = Story
     template_name = 'scribbli/stories/story/list.html'
+    paginate_by = 10

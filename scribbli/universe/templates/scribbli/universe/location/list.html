@@ -10,4 +10,5 @@
             <li><a href="{{ location.get_absolute_url }}">{{ location.name }}</a></li>
         {% endfor %}
     </ul>
+    {% include 'scribbli/partials/__pagination-simple.html' with objects=page_obj %}
 {% endblock %}
