@@ -1,10 +1,13 @@
 {% extends 'scribbli/extendables/base.html' %}
 
 {% block title %}{{ profile.user.username }} Profile{% endblock %}
+{% block page_title %}{{ profile.user.username }}{% endblock %}
 
 {% block main %}
-    {{ block.super }}
-    <h1>{{ profile.user.username }}</h1>
-
-    <p>{{ profile.about }}</p>
+  {{ block.super }}
+  <div class="row">
+    <div class="col">
+      <p>{{ profile.about }}</p>
+    </div>
+  </div>
 {% endblock %}

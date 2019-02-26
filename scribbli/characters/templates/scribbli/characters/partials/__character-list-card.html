@@ -1,0 +1,23 @@
+<a href="{{ character.get_absolute_url }}" class="card card-default hover-stroke">
+  <div class="card-body no-padding">
+    <div class="container-sm-height">
+      <div class="row row-sm-height">
+        <div class="col-md-3 justify-content-center d-flex flex-column bg-master-lighter"
+             style="
+               background-image: url(//placehold.it/100);
+               background-size: cover;
+               background-position: center;
+               background-repeat: no-repeat;">
+        </div>
+        <div class="col-md-9 col-sm-height padding-20 col-top">
+          <p class="font-montserrat bold">{{ character }}</p>
+          <blockquote class="blockquote mb-0">
+            <p>Eventually it would be cool if a random quote from the character's post history
+              was displayed here -- or their most upvoted post.</p>
+            <footer class="blockquote-footer">From story: <cite title="Story Title">Story Title</cite></footer>
+          </blockquote>
+         </div>
+      </div>
+    </div>
+  </div>
+</a>

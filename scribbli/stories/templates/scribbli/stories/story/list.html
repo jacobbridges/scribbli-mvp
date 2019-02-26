@@ -1,14 +1,16 @@
 {% extends 'scribbli/extendables/base.html' %}
 
 {% block title %}Story List{% endblock %}
+{% block page_title %}Story List{% endblock %}
 
 {% block main %}
-    {{ block.super }}
-    <h1>Stories</h1>
-    <ul>
-        {% for story in stories %}
-            <li><a href="{{ story.get_absolute_url }}">{{ story }}</a></li>
-        {% endfor %}
-    </ul>
-    {% include 'scribbli/partials/__pagination-simple.html' with objects=page_obj %}
+  {{ block.super }}
+   <div class="row">
+      {% for story in stories %}
+        <div class="col-md-6 col-xs-12">
+          {% include 'scribbli/stories/partials/__story-list-card.html' %}
+        </div>
+      {% endfor %}
+   </div>
+  {% include 'scribbli/partials/__pagination-bs4.html' with objects=page_obj %}
 {% endblock %}

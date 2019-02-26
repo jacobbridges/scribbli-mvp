@@ -1,19 +1,22 @@
 {% extends 'scribbli/extendables/base.html' %}
+{% load widget_tweaks %}
 
 {% block title %}Update {{ form.instance.name }}{% endblock %}
+{% block page_title %}Update {{ form.instance.name }}{% endblock %}
 
 {% block main %}
-    {{ block.super }}
-    <h1>Update {{ form.instance.name }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        <div>
-            {{ form.name.errors }}
+  {{ block.super }}
+  <div class="row">
+    <div class="col-xs-12 col-md-8">
+      <form role="form" method="post">{% csrf_token %}
+
+        <div class="form-group form-group-default ">
             {{ form.name.label }}
-            <div>
-                {{ form.name }}
-            </div>
+            {% render_field form.name class+="form-control" %}
         </div>
-        <input type="submit" value="Update">
-    </form>
+
+        <button type="submit" class="btn btn-default">Create</button>
+      </form>
+    </div>
+  </div>
 {% endblock %}

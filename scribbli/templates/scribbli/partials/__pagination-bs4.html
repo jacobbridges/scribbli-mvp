@@ -1,0 +1,22 @@
+<nav aria-label="pagination">
+  <ul class="pagination">
+    <li class="page-item{% if not objects.has_previous %} disabled{% endif %}">
+      <a class="page-link" href="?page=1" tabindex="-1">First</a>
+    </li>
+
+    {% if objects.number > 2 %}
+      <li class="page-item"><a href="?page={{ objects.number|add:-1 }}" class="page-link">{{ objects.number|add:-1 }}</a></li>
+    {% endif %}
+
+
+    <li class="page-item active"><a class="page-link" href="#">{{ objects.number }} <span class="sr-only">(current)</span></a></li>
+
+    {% if objects.number|add:1 < objects.num_pages %}
+      <li class="page-item"><a href="?page={{ objects.number|add:1 }}" class="page-link"></a></li>
+    {% endif %}
+
+    <li class="page-item{% if not objects.has_next %} disabled{% endif %}">
+      <a class="page-link" href="?page={{ objects.num_pages }}">Last</a>
+    </li>
+  </ul>
+</nav>

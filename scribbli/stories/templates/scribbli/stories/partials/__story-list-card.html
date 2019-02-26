@@ -1,0 +1,22 @@
+{% load static %}
+<a href="{{ story.get_absolute_url }}" class="card card-default hover-stroke">
+  <div class="card-body">
+    <h3>{{ story }}</h3>
+    <p>{{ story.description|truncatewords:50 }}</p>
+    <br>
+    <div>
+      <div class="profile-img-wrapper m-t-5 inline">
+        <img width="35" height="35" data-src-retina="{% static 'scribbli/assets/img/profiles/avatar_small2x.jpg' %}" data-src="{% static 'scribbli/assets/img/profiles/avatar_small.jpg' %}" alt="" src="{% static 'scribbli/assets/img/profiles/avatar_small.jpg' %}">
+        <div class="chat-status available"></div>
+      </div>
+      <div class="profile-img-wrapper m-t-5 inline">
+        <img width="35" height="35" data-src-retina="{% static 'scribbli/assets/img/profiles/avatar_small2x.jpg' %}" data-src="{% static 'scribbli/assets/img/profiles/avatar_small.jpg' %}" alt="" src="{% static 'scribbli/assets/img/profiles/avatar_small.jpg' %}">
+        <div class="chat-status available"></div>
+      </div>
+      <div class="profile-img-wrapper m-t-5 inline">
+        <img width="35" height="35" data-src-retina="{% static 'scribbli/assets/img/profiles/avatar_small2x.jpg' %}" data-src="{% static 'scribbli/assets/img/profiles/avatar_small.jpg' %}" alt="" src="{% static 'scribbli/assets/img/profiles/avatar_small.jpg' %}">
+        <div class="chat-status available"></div>
+      </div>
+    </div>
+  </div>
+</a>

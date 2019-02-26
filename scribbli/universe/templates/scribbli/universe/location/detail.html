@@ -1,20 +1,24 @@
 {% extends 'scribbli/extendables/base.html' %}
 
 {% block title %}{{ location.name }} | World{% endblock %}
+{% block page_title %}{{ location }}{% endblock %}
 
 {% block main %}
-    {{ block.super }}
-    <h1>{{ location }}</h1>
-    <a href="{{ location.get_absolute_url }}stories/">Stories in this World</a>
+  {{ block.super }}
+  <div class="row">
+    <div class="col">
+      <a href="{{ location.get_absolute_url }}stories/">Stories in this World</a>
 
-    {% with children=location.get_children %}
-    {% if children %}
+      {% with children=location.get_children %}
+      {% if children %}
         <h2>Worlds within {{ location }}</h2>
         <ul>
-            {% for child in children %}
-                <li><a href="{{ child.get_absolute_url }}">{{ child }}</a></li>
-            {% endfor %}
+          {% for child in children %}
+            <li><a href="{{ child.get_absolute_url }}">{{ child }}</a></li>
+          {% endfor %}
         </ul>
-    {% endif %}
-    {% endwith %}
+      {% endif %}
+      {% endwith %}
+    </div>
+  </div>
 {% endblock %}

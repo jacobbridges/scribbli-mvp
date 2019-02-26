@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'mptt',
     'debug_toolbar',
+    'widget_tweaks',
 
     # subapps
     'scribbli',

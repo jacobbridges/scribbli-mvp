@@ -1,11 +1,13 @@
 {% extends 'scribbli/extendables/base.html' %}
 
 {% block title %}{{ character.name }} | Character{% endblock %}
+{% block page_title %}{{ character.name }} <small>created by {{ character.user.username }}</small>{% endblock %}
 
 {% block main %}
-    {{ block.super }}
-    <h1>
-        {{ character.name }}
-        <small>created by {{ character.user.username }}</small>
-    </h1>
+  {{ block.super }}
+  <div class="row">
+    <div class="col-md-12">
+
+    </div>
+  </div>
 {% endblock %}

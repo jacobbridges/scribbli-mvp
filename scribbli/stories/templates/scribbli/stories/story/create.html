@@ -1,33 +1,26 @@
 {% extends 'scribbli/extendables/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
 
 {% block title %}Create a Story{% endblock %}
+{% block page_title %}Create a Story{% endblock %}
 
 {% block main %}
     {{ block.super }}
-    <h1>Create a Story</h1>
-    <form method="post">
-        {% csrf_token %}
-        <div>
-            {{ form.name.errors }}
-            {{ form.name.label }}
-            <div>
-                {{ form.name }}
-            </div>
-        </div>
-        <div>
-            {{ form.description.errors }}
-            {{ form.description.label }}
-            <div>
-                {{ form.description }}
-            </div>
-        </div>
-        <div>
-            {{ form.locations.errors }}
-            {{ form.locations.label }}
-            <div>
-                {{ form.locations }}
-            </div>
-        </div>
-        <input type="submit" value="Create">
-    </form>
+    <div class="row">
+      <div class="col">
+        <form role="form" method="post">{% csrf_token %}
+          <div class="form-group form-group-default">
+            {{ form.name.label_tag|cut:':' }}
+            {% render_field form.name class+="form-control" %}
+          </div>
+          <div class="form-group form-group-default">
+            {{ form.description.label_tag|cut:':' }}
+            {% render_field form.description class+="form-control" %}
+          </div>
+          {% include 'scribbli/partials/__form-input-select-multiple.html' with field=form.locations only %}
+          <button type="submit" class="btn btn-default">Create</button>
+        </form>
+      </div>
+    </div>
 {% endblock %}

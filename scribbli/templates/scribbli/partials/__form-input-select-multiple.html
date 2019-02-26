@@ -1,0 +1,20 @@
+<div class="form-group form-group-default form-group-default-select2">
+  <label>{{ field.label }}</label>
+  <select
+      id="{{ field.id_for_label }}"
+      name="{{ field.html_name }}"
+      class="full-width"
+      {% if not field.value %}data-init-plugin="select2"{% endif %}
+      multiple>
+    {% for option in field.field.widget.choices.queryset %}
+      <option value="{{ option.key }}">{{ option.name }}</option>
+    {% endfor %}
+  </select>
+  {% if field.value %}
+    <script>
+      setTimeout(function(){
+        window.jQuery("#{{ field.id_for_label }}").val(JSON.parse({{ field.value }})).select2();
+      }, 1);
+    </script>
+  {% endif %}
+</div>

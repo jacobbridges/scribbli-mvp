@@ -1,2 +1,5 @@
 .idea/
 __pycache__/
+
+scribbli/static/scribbli/pages
+scribbli/static/scribbli/assets/plugins

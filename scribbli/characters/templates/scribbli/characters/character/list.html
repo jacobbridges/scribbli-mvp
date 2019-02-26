@@ -1,16 +1,17 @@
 {% extends 'scribbli/extendables/base.html' %}
 
-{% block title %}{{ page_title }}{% endblock %}
+{% block title %}Character List{% endblock %}
+{% block page_title %}Character List{% endblock %}
 
 {% block main %}
-    {{ block.super }}
-    <h1>{{ page_title }}</h1>
+  {{ block.super }}
 
-    <ul>
-        {% for character in characters %}
-            <li><a href="{{ character.get_absolute_url }}">{{ character.name }}</a></li>
-        {% endfor %}
-    </ul>
-
-    {% include 'scribbli/partials/__pagination-simple.html' with objects=page_obj %}
+  <div class="row">
+    <div class="col-md-12">
+      {% for character in characters %}
+        {% include 'scribbli/characters/partials/__character-list-card.html' %}
+      {% endfor %}
+      {% include 'scribbli/partials/__pagination-bs4.html' with objects=page_obj %}
+    </div>
+  </div>
 {% endblock %}

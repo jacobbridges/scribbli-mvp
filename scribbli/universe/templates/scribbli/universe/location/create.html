@@ -1,26 +1,21 @@
 {% extends 'scribbli/extendables/base.html' %}
+{% load widget_tweaks %}
 
 {% block title %}Create a World{% endblock %}
+{% block page_title %}Create a World{% endblock %}
 
 {% block main %}
-    {{ block.super }}
-    <h1>Create a World</h1>
-    <form method="post">
-        {% csrf_token %}
-        <div>
-            {{ form.name.errors }}
-            {{ form.name.label }}
-            <div>
-                {{ form.name }}
-            </div>
+  {{ block.super }}
+  <div class="row">
+    <div class="col">
+      <form role="form" method="post">{% csrf_token %}
+        <div class="form-group form-group-default">
+          {{ form.name.label_tag|cut:':' }}
+          {% render_field form.name class+="form-control" %}
         </div>
-        <div>
-            {{ form.parent.errors }}
-            {{ form.parent.label }}
-            <div>
-                {{ form.parent }}
-            </div>
-        </div>
-        <input type="submit" value="Create">
-    </form>
+        {% include 'scribbli/partials/__form-input-select-one.html' with field=form.parent only %}
+        <button type="submit" class="btn btn-default">Create</button>
+      </form>
+    </div>
+  </div>
 {% endblock %}
