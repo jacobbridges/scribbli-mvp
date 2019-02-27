@@ -1,4 +1,5 @@
 {% extends 'scribbli/extendables/base.html' %}
+{% load static %}
 
 {% block title %}{{ location.name }} | World{% endblock %}
 {% block page_title %}{{ location }}{% endblock %}
@@ -7,18 +8,74 @@
   {{ block.super }}
   <div class="row">
     <div class="col">
-      <a href="{{ location.get_absolute_url }}stories/">Stories in this World</a>
-
-      {% with children=location.get_children %}
-      {% if children %}
-        <h2>Worlds within {{ location }}</h2>
-        <ul>
-          {% for child in children %}
-            <li><a href="{{ child.get_absolute_url }}">{{ child }}</a></li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-      {% endwith %}
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            Navigation
+          </div>
+        </div>
+        <div class="card-body card-condensed">
+          <a class="btn btn-primary btn-cons" href="{% url 'location-story-list' pk=location.pk slug=location.slug %}">
+            <i class="fa fa-book"></i>
+            Stories
+          </a>
+          <a class="btn btn-primary btn-cons" href="{% url 'location-child-list' pk=location.pk slug=location.slug %}">
+            <i class="fa fa-globe"></i>
+            Inner Worlds
+          </a>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="row">
+    <!-- \\ Recent Posts -->
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Latest Posts</div>
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>{% lorem 1 %}...</p>
+            <footer class="blockquote-footer">From story: <cite title="Story Title">Story Title</cite></footer>
+          </blockquote>
+          <hr>
+          <blockquote class="blockquote mb-0">
+            <p>{% lorem 1 %}...</p>
+            <footer class="blockquote-footer">From story: <cite title="Story Title">Story Title</cite></footer>
+          </blockquote>
+          <hr>
+          <blockquote class="blockquote mb-0">
+            <p>{% lorem 1 %}...</p>
+            <footer class="blockquote-footer">From story: <cite title="Story Title">Story Title</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+    <!-- // Recent Posts -->
+
+    <!-- \\ Active Characters -->
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            Active Characters
+          </div>
+        </div>
+        <div class="card card-transparent">
+          <div class="card-body clearfix">
+            <div class="profile-img-wrapper inline" style="margin-top: 3px;">
+              <img width="35" height="35" data-src-retina="{% static 'scribbli/assets/img/profiles/avatar_small2x.jpg' %}" data-src="{% static 'scribbli/assets/img/profiles/avatar_small.jpg' %}" alt="" src="{% static 'scribbli/assets/img/profiles/avatar_small.jpg' %}">
+              <div class="chat-status available"></div>
+            </div>
+            <div>
+              <div><span class="bold p-l-5">Jerry</span></div>
+              <div><span class="font-italic p-l-5">lurking in <a href="#">The Lagoon</a></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // Active Characters -->
   </div>
 {% endblock %}

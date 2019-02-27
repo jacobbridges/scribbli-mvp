@@ -1,14 +1,16 @@
 {% extends 'scribbli/extendables/base.html' %}
 
 {% block title %}World List{% endblock %}
+{% block page_title %}World List{% endblock %}
 
 {% block main %}
-    {{ block.super }}
-    <h1>World List</h1>
-    <ul>
-        {% for location in locations %}
-            <li><a href="{{ location.get_absolute_url }}">{{ location.name }}</a></li>
-        {% endfor %}
-    </ul>
-    {% include 'scribbli/partials/__pagination-simple.html' with objects=page_obj %}
+  {{ block.super }}
+  <div class="row">
+    <div class="col">
+      {% for location in locations %}
+        {% include 'scribbli/universe/partials/__location-list-card.html' with location=location only %}
+      {% endfor %}
+      {% include 'scribbli/partials/__pagination-bs4.html' with objects=page_obj %}
+    </div>
+  </div>
 {% endblock %}

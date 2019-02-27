@@ -1,0 +1,24 @@
+<a href="{{ location.get_absolute_url }}" class="card card-default hover-stroke">
+  <div class="card-body no-padding">
+    <div class="container-sm-height">
+      <div class="row row-sm-height">
+        <div class="col-md-3 justify-content-center d-flex flex-column bg-master-lighter"
+             style="
+               background-image: url(//placehold.it/100);
+               background-size: cover;
+               background-position: center;
+               background-repeat: no-repeat;">
+        </div>
+        <div class="col-md-9 col-sm-height padding-20 col-top">
+          <h3>
+            {{ location.name }}<span class="muted">#{{ location.unique_hash }}</span>
+            {% if location.parent %}
+              <span class="normal-text">subworld of {{ location.parent }}</span>
+            {% endif %}
+          </h3>
+          <p>{% lorem 60 w %}...</p>
+         </div>
+      </div>
+    </div>
+  </div>
+</a>

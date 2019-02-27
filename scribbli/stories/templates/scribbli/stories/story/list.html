@@ -6,11 +6,11 @@
 {% block main %}
   {{ block.super }}
    <div class="row">
-      {% for story in stories %}
-        <div class="col-md-6 col-xs-12">
-          {% include 'scribbli/stories/partials/__story-list-card.html' %}
-        </div>
-      {% endfor %}
+    {% for story in stories %}
+      <div class="col-md-6 col-xs-12">
+        {% include 'scribbli/stories/partials/__story-list-card.html' %}
+      </div>
+    {% endfor %}
+    {% include 'scribbli/partials/__pagination-bs4.html' with objects=page_obj %}
    </div>
-  {% include 'scribbli/partials/__pagination-bs4.html' with objects=page_obj %}
 {% endblock %}

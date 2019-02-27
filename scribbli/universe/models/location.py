@@ -14,8 +14,12 @@ class Location(MPTTModel, DateCreatedMixin, DateModifiedMixin):
         order_insertion_by = ['name']
 
     @property
+    def unique_hash(self):
+        return f'{self.id:04}'
+
+    @property
     def unique_name(self):
-        return f'{self.name}#{self.id:04}'
+        return f'{self.name}#{self.unique_hash}'
 
     def get_absolute_url(self):
         return reverse('location-detail', kwargs=dict(pk=self.pk, slug=self.slug))

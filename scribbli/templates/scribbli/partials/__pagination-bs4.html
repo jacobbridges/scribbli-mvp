@@ -1,3 +1,4 @@
+{% if objects %}
 <nav aria-label="pagination">
   <ul class="pagination">
     <li class="page-item{% if not objects.has_previous %} disabled{% endif %}">
@@ -9,7 +10,7 @@
     {% endif %}
 
 
-    <li class="page-item active"><a class="page-link" href="#">{{ objects.number }} <span class="sr-only">(current)</span></a></li>
+    <li class="page-item active"><a class="page-link" href="javascript:" disabled>{{ objects.number }} <span class="sr-only">(current)</span></a></li>
 
     {% if objects.number|add:1 < objects.num_pages %}
       <li class="page-item"><a href="?page={{ objects.number|add:1 }}" class="page-link"></a></li>
@@ -20,3 +21,4 @@
     </li>
   </ul>
 </nav>
+{% endif %}
