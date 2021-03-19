@@ -6,7 +6,7 @@ django-allauth==0.38.0
 django-filter==2.1.0
 django-js-asset==1.1.0
 django-mptt==0.9.1
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 idna==2.7
 oauthlib==2.1.0
 pydash==4.7.3
