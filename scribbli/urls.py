@@ -27,9 +27,3 @@ urlpatterns = [
     path('stories/', include('scribbli.stories.urls')),
     path('', include('scribbli.universe.urls')),
 ]
-
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns

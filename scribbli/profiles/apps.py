@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class ProfilesConfig(AppConfig):
-    name = 'profiles'
+    name = 'scribbli.profiles'
+    label = 'profiles'
