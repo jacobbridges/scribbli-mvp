@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "scribbli"
+version = "0.1.0"
+description = "A blank multiverse for collaborative story telling."
+authors = ["Jacob Bridges <me@jacobbridges.dev>"]
+license = "UNLICENSE"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Django = "^3.2.4"
+django-mptt = "^0.12.0"
+djangorestframework = "^3.12.4"
+requests = "^2.25.1"
+django-filter = "^2.4.0"
+pydash = "^5.0.0"
+python-dateutil = "^2.8.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+ipython = "^7.24.1"
+pylint-django = "^2.4.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
