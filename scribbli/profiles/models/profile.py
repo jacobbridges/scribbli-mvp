@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
+from scribbli.profiles.constants import RoleChoices
+
 
 class Profile(models.Model):
     """
@@ -9,7 +11,7 @@ class Profile(models.Model):
     """
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # TODO: add a field for profile image
+    role = models.IntegerField(default=RoleChoices.Guest, choices=RoleChoices.as_choices())
     about = models.CharField(max_length=500, blank=True)
 
     @staticmethod

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +27,7 @@ SECRET_KEY = 'ml=)_f=*a*670hmo&1hd#6)u)9m5t$%@q^ln6(wg5#f2ne_5p!'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'scribbli-199905.appspot.com',
+    '*',
     'localhost',
 ]
 
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
 
     # ---- Django addons ----
     'mptt',
+    'graphene_django',
+    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
 
     # subapps
     'scribbli',
@@ -100,16 +103,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'NumericPasswordValidator',
     },
 ]
 
@@ -117,10 +124,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Supported authenticators
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-AUTHENTICATION_BACKENDS
 
-AUTHENTICATION_BACKENDS = (
-    # Needed to login by username in Django admin, regardless of `allauth`
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
     'django.contrib.auth.backends.ModelBackend',
-)
+]
 
 
 # Internationalization
@@ -152,5 +159,39 @@ LOGIN_REDIRECT_URL = 'profile-detail--mine'
 INTERNAL_IPS = ('localhost', '127.0.0.1')
 
 # Customize type of AutoField to use when PK is not defined
-# https://docs.djangoproject.com/en/3.2/releases/3.2/#customizing-type-of-auto-created-primary-keys
+# https://docs.djangoproject.com/ens/3.2/releases/3.2/#customizing-type-of-auto-created-primary-keys
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configure DRF
+REST_FRAMEWORK = {
+    # Should use versioning
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.'
+                                'AcceptHeaderVersioning',
+    'DEFAULT_VERSION': '1.0',
+
+    # Disable the browsable API
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+}
+
+# Configure Graphene schema
+GRAPHENE = {
+    'SCHEMA': 'scribbli.schema.schema',
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
+}
+
+# JWT
+GRAPHQL_JWT = {
+    'JWT_PAYLOAD_HANDLER': 'app.utils.jwt_payload',
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
+    'JWT_EXPIRATION_DELTA': timedelta(minutes=5),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
+    'JWT_SECRET_KEY': 'ml=)_f=*a*670hmo&1hd#6)u)9m5t$%@q^ln6(wg5#f2ne_5p!',
+    'JWT_ALGORITHM': 'HS256',
+}

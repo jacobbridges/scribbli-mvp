@@ -14,12 +14,18 @@ requests = "^2.25.1"
 django-filter = "^2.4.0"
 pydash = "^5.0.0"
 python-dateutil = "^2.8.1"
+pylint-django = "^2.4.4"
+django-graphql-jwt = "^0.3.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
 ipython = "^7.24.1"
 pylint-django = "^2.4.4"
+pycodestyle = "^2.7.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pycodestyle]
+max-line-length = 100
