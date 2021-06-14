@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # ---- Django addons ----
+    'corsheaders',
     'mptt',
     'graphene_django',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
@@ -57,6 +58,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 'corsheaders.middleware.CorsMiddleware',
+    'scribbli.middleware.SimpleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -186,12 +189,45 @@ GRAPHENE = {
 
 # JWT
 GRAPHQL_JWT = {
-    'JWT_PAYLOAD_HANDLER': 'app.utils.jwt_payload',
+    'JWT_PAYLOAD_HANDLER': 'scribbli.utils.generate_jwt_payload',
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
     'JWT_VERIFY_EXPIRATION': True,
     'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
     'JWT_EXPIRATION_DELTA': timedelta(minutes=5),
-    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=30),
     'JWT_SECRET_KEY': 'ml=)_f=*a*670hmo&1hd#6)u)9m5t$%@q^ln6(wg5#f2ne_5p!',
     'JWT_ALGORITHM': 'HS256',
 }
+
+
+CORS_ALLOWED_ORIGINS = [
+    'https://8000-olive-chicken-odjp9w9z.ws-us09.gitpod.io',
+    'https://3000-copper-quail-5aar8a8d.ws-us09.gitpod.io',
+]
+CORS_ALLOW_CREDENTIALS = False
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+    'HEAD',
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-language',
+    'accept-encoding',
+    'authorization',
+    'connection',
+    'content-language',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]

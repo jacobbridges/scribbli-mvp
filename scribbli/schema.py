@@ -58,7 +58,12 @@ class CreateUser(graphene.Mutation):
         token = get_token(user)
         refresh_token = create_refresh_token(user)
 
-        return CreateUser(user=user, profile=profile_obj, token=token, refresh_token=refresh_token)
+        return CreateUser(
+            user=user,
+            profile=profile_obj,
+            token=token,
+            refresh_token=refresh_token
+        )
 
 
 class Mutation(graphene.ObjectType):
@@ -76,29 +81,34 @@ class Query(graphene.ObjectType):
     def resolve_universe_list(self, info):
         return Universe.objects.all()
 
-    location_list = graphene.List(LocationType)
+    location_list = graphene.List(LocationType, universe_id=graphene.Int())
 
-    def resolve_location_list(self, info):
-        return Location.objects.all()
+    def resolve_location_list(self, info, universe_id):
+        return Location.objects.filter(universe_id=universe_id)
+
+    location_detail = graphene.Field(LocationType, location_un=graphene.String())
+
+    def resolve_location_detail(self, info, location_un):
+        if not location_un or '#' not in location_un:
+            raise Exception("location unique name is required")
+
+        slug, id_ = location_un.split('#')
+        return Location.objects.get(id=id_)
 
     whoami = graphene.Field(UserType)
 
     def resolve_whoami(self, info):
-        user = info.context.user
-        # No user = not signed in
-        if user.is_anonymous:
+        if info.context.user.is_anonymous:
             raise Exception('Authentication Failure: You must be signed in')
-        return user
+        return info.context.user
 
     profile_list = graphene.List(ProfileType)
 
     def resolve_profile_list(self, info):
         if info.context.user.is_anonymous:
             raise Exception('Authentication Failure: You must be signed in')
-            # return []
         if info.context.user.profile.role != RoleChoices.Admin:
             raise Exception('Authentication Failure: Insufficient Privileges')
-            # return []
         return Profile.objects.select_related('user').all()
 
 
