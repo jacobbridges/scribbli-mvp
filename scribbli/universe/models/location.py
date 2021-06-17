@@ -8,7 +8,7 @@ from scribbli.universe.models.mixins import BelongsToUniverseMixin
 
 class Location(MPTTModel, DateCreatedMixin, DateModifiedMixin, BelongsToUniverseMixin):
     """Location is any area within a universe.
-    
+
     A galaxy is a location.
     A world is a location.
     A city is a location.

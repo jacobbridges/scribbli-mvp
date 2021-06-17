@@ -1,6 +1,6 @@
 {
-    "python.pythonPath": "/home/gitpod/.cache/pypoetry/virtualenvs/scribbli-QASXScGL-py3.8/bin/python",
-    "python.linting.pylintEnabled": false,
+    "python.pythonPath": "/home/gitpod/.pyenv/versions/3.8.10/bin/python",
+    "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
-    "python.linting.pycodestyleEnabled": true
+    "python.linting.pycodestyleEnabled": false
 }

@@ -12,6 +12,13 @@ class Universe(models.Model):
     name = models.CharField(max_length=50)
     slug = models.CharField(max_length=50)
 
+    @classmethod
+    def alpha(cls):
+        return Universe.objects.get_or_create(
+            name='Alpha',
+            slug='alpha'
+        )[0]
+
     @property
     def unique_name(self):
         return f'{self.name}#{self.id:04}'
