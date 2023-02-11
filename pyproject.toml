@@ -20,7 +20,7 @@ django-cors-headers = "^3.7.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
-ipython = "^7.24.1"
+ipython = "^8.10.0"
 pylint-django = "^2.4.4"
 pycodestyle = "^2.7.0"
 
